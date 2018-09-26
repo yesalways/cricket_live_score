@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 08, 2018 at 07:43 AM
+-- Generation Time: Sep 26, 2018 at 04:23 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -162,21 +162,13 @@ INSERT INTO `clientsinfo` (`machine`, `os`, `browser`, `datetime`) VALUES
 (NULL, NULL, 'Chrome', '2018-08-31 12:22:16'),
 (NULL, NULL, 'Chrome', '2018-08-31 12:25:42'),
 (NULL, NULL, 'Chrome', '2018-09-07 21:30:04'),
-(NULL, NULL, 'Chrome', '2018-09-08 11:01:15');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fallofwicket`
---
-
-CREATE TABLE `fallofwicket` (
-  `matchid` varchar(10) NOT NULL,
-  `batsmanid` varchar(10) NOT NULL,
-  `bowlerid` varchar(10) NOT NULL,
-  `typeout` decimal(15,0) NOT NULL,
-  `fielderid` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+(NULL, NULL, 'Chrome', '2018-09-08 11:01:15'),
+(NULL, NULL, 'Chrome', '2018-09-13 17:24:43'),
+(NULL, NULL, 'Chrome', '2018-09-13 17:24:59'),
+(NULL, NULL, 'Chrome', '2018-09-17 19:58:26'),
+(NULL, NULL, 'Chrome', '2018-09-22 16:03:23'),
+(NULL, NULL, 'Chrome', '2018-09-22 16:07:43'),
+(NULL, NULL, 'Chrome', '2018-09-26 18:46:37');
 
 -- --------------------------------------------------------
 
@@ -196,7 +188,7 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`user_id`, `pwd`, `ground_id`, `status`) VALUES
-('user1', '1', 'G1', 0),
+('user1', '1', 'G1', 1),
 ('user2', '2', 'G2', 0);
 
 -- --------------------------------------------------------
@@ -227,7 +219,7 @@ CREATE TABLE `matches_2018` (
 --
 
 INSERT INTO `matches_2018` (`matchid`, `team1id`, `team2id`, `scheduledon`, `status`, `toss_teamid`, `toss_type`, `overs`, `inning1start`, `inning1end`, `inning2start`, `inning2end`, `winner_teamid`, `remarks`) VALUES
-('03_G1_M1', 'KUCET', 'CMRIT', '0000-00-00', 'active', NULL, NULL, 0, NULL, NULL, NULL, NULL, '.', '.'),
+('03_G1_M1', 'KUCET', 'CMRIT', NULL, 'active', NULL, NULL, 0, NULL, NULL, NULL, NULL, '.', '.'),
 ('03_G1_M2', 'AUROH', 'KITSW', '0000-00-00', 'None', '.', '.', 0, NULL, NULL, NULL, NULL, '.', '.'),
 ('03_G2_M1', 'SBITK', 'GITUH', '0000-00-00', 'active', NULL, NULL, 0, NULL, NULL, NULL, NULL, '.', '.'),
 ('03_G2_M2', 'CMRCE', 'NITWG', '0000-00-00', 'None', '.', '.', 0, NULL, NULL, NULL, NULL, '.', '.'),
@@ -652,7 +644,7 @@ INSERT INTO `teamid` (`sno`, `teamid`, `collegename`, `state`, `district`, `loca
 (46, 'SRIIT', 'SR International Institute of Technology', 'Ghatkesar', 'Ranga Reddy', '.', '.', '.', '.'),
 (24, 'SRMUC', 'SRM University', '.', 'Chennai', '.', '.', '.', '.'),
 (31, 'SSITS', 'Sai Spruthi Institute of Technology & Science', '.', 'Sathupally', '.', '.', '.', '.'),
-(40, 'STPEC', 'St. Peters Engineering College', '.', 'Hyderabad', '.', '.', '.', '.'),
+(40, 'STPEC', 'St. Peter\'s Engineering College', '.', 'Hyderabad', '.', '.', '.', '.'),
 (10, 'SVCEW', 'SV College of Engineering', '.', 'Tirupathi', '.', '.', '.', '.'),
 (44, 'SVITH', 'SV Institute of Technology', '.', 'Secunderabad', '.', '.', '.', '.'),
 (22, 'SVSIT', 'SVS Institute of Technology & Science', 'Bheemaram', 'Warangal', '.', '.', '.', '.'),
