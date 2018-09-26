@@ -33,9 +33,6 @@ function createtable()
         echo "this match is already started";
     }
 }
-//sms grid, hyd
 
-//50000 4500/-
-//25000 2800/-
 
 ?>
