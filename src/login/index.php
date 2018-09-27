@@ -3,7 +3,7 @@
 ?>
 <html>
 <head>
- <link href="css/style1.css"  rel = "stylesheet" media="screen">
+ <link href="../../lib/css/style1.css"  rel = "stylesheet" media="screen">
 </head>
 <script>
 function dothis()
@@ -12,7 +12,7 @@ function dothis()
 }
 </script>
 <body onload="dothis()">
-<form name='index.php' method='POST' action='check.php'>
+<form name='index' method='POST' action='check.php'>
 <center>
 
 <?php

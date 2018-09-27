@@ -147,10 +147,3 @@ $object->getScore();
 //header("Refresh:1; url=ground1.php");
 // $x=rand(10,20);
 ?>
-
-<?php
-// for($i=1; $i<=5; $i++)
-// echo "<small>hi.. ", $msg, "<br></small>";
-
-
-?>

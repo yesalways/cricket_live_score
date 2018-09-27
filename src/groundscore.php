@@ -8,20 +8,20 @@
   <meta content="SR Engineering College (SREC) established in the year 2002 is sponsored by Sri Rajeshwara Educational Society which has four decades of rich experience in the field of Education. It is located on Warangal-Karimnagar highway at about 15 KM away from Warangal City. SR Group runs 3 Engineering Colleges, and scores of Junior Colleges and Schools spreading over Telangana and Andhra Pradesh." name="description">
 
   <!-- Favicons -->
-  <link href="img/fav-icon.png" rel="icon">
+  <link href="../resources/img/fav-icon.png" rel="icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
 
   <!-- Bootstrap CSS File -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../lib/animate/animate.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="css/style.css" rel="stylesheet">
+  <link href="../lib/css/style.css" rel="stylesheet">
 <style>
 .content, empty{
 float:left;

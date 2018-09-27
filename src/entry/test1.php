@@ -68,14 +68,14 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
 
   <!-- Bootstrap CSS File -->
-  <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
-  <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="../lib/animate/animate.min.css" rel="stylesheet">
+  <link href="../../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../../lib/animate/animate.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="../css/style.css" rel="stylesheet">
+  <link href="../../lib/css/style.css" rel="stylesheet">
 
 		<style>
 				fieldset{
@@ -98,9 +98,9 @@
 				#center{text-align:center;font-size:85%}
 				select{font-size:10px;width:80px;}
 		</style>
-	<script src="../js/jquery.min.js"></script>
+	<script src="../../lib/jquery/jquery.min.js"></script>
 	
-	<script src="../js/scoring.js"></script>
+	<script src="../../lib/js/scoring.js"></script>
 	
 </head>
 
