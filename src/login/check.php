@@ -15,6 +15,11 @@ while($res1 = mysqli_fetch_array($qry1))
 	 $gid=$res1[2];
      $flag=1;
      $q=mysqli_query($con, "update `login` set `status` = 1 where `user_id`='$u' ");
+     if($u=='admin')
+     {
+         $_SESSION['username'] = $u;
+       echo "<script>window.open('../entry/admin.php', '_self');</script>";
+     }
      break;
  }
 }
@@ -49,7 +54,10 @@ if($flag)
    else 
      echo "<script>window.open('../entry/', '_self');</script>";
  }
-else	echo "<script>window.open('../login/', '_self')</script>";
+else	{
+       echo "<script>window.alert('login credentials incorrect')";
+       echo "<script>window.open('../login/', '_self')</script>";
+}
 	// header('Location:/OBE_WT');
 }
 ?>

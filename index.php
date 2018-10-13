@@ -30,7 +30,7 @@
     <div class="container">
 
       <div id="logo" class="pull-left">
-        <a href="#hero"><img src="resources/img/wer.png" alt="16th SR Champions Trophy 2018" title="" /></img></a>
+        <a href="#hero"><img src="resources/img/wer.png" alt="16th SR Champions Trophy 2018" title="" /></a>
         <!-- Uncomment below if you prefer to use a text logo -->
         <!--<h1><a href="#hero">Regna</a></h1>-->
       </div>
@@ -40,12 +40,12 @@
           <li class="menu-active"><a href="#hero">Home</a></li>
           <li><a href="#about">About Us</a></li>
 		  <li><a href="#registrations" title='46 Teams Registered'>Registrations</a></li>
-          <li><a href="#services" tiele='Live Score Board of Four Grounds'>ScoreBoard</a></li>
+          <li><a href="#services" title='Live Score Board of Four Grounds'>ScoreBoard</a></li>
           <li><a href="#portfolio" title='Previous match memories'>Gallery</a></li>
           <li><a href="#team" title='Core Team'>Team</a></li>
 
           <li><a href="#contact">Contact Us</a></li>
-          <li><a href="src/login/" title='Opertor to Update the Score at a certain groun'>login</a></li>
+          <li><a href="src/login/" title='Operator to Update the Score at certain ground'>login</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
@@ -221,24 +221,23 @@
   </div>
 
 		
-        <div class="row">
+        <div class="row"> 
           <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
             <div class="box">
-              <div class="icon" style='text-align:center;margin:0 0 0 0'><a href=""><i class="fa fa-desktop"></i></a></div>              
-              <p id="ground1" style='margin:-15px 0 0 0'>
-  			  </p>
+              <div class="icon" style='text-align:center;margin:0 0 0 0'><a href="src/groundscore.php?id=1"><i class="fa fa-desktop"></i></a></div>              
+              <p id="ground1" style='margin:-15px 0 0 0'>click here...</p>
             </div>
           </div>
           <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
             <div class="box">
-              <div class="icon" style='text-align:center;margin:0 0 0 0'><a href=""><i class="fa fa-desktop"></i></a></div>              
+              <div class="icon" style='text-align:center;margin:0 0 0 0'><a href="src/groundscore.php?id=2"><i class="fa fa-desktop"></i></a></div>              
               <p id="ground2" style='margin:-15px 0 0 0'>
   			  </p>
             </div>
           </div>
           <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
             <div class="box">
-              <div class="icon" style='text-align:center;margin:0 0 0 0'><a href=""><i class="fa fa-desktop"></i></a></div>              
+              <div class="icon" style='text-align:center;margin:0 0 0 0'><a href="src/groundscore.php?id=3"><i class="fa fa-desktop"></i></a></div>              
               <p id="ground3" style='margin:-15px 0 0 0'>
   			  </p>
             </div>
@@ -246,7 +245,7 @@
 
           <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.8s">
             <div class="box">
-              <div class="icon" style='text-align:center;margin:0 0 0 0'><a href=""><i class="fa fa-desktop"></i></a></div>              
+              <div class="icon" style='text-align:center;margin:0 0 0 0'><a href="src/groundscore.php?id=4"><i class="fa fa-desktop"></i></a></div>              
               <p id="ground4" style='margin:-15px 0 0 0'>
   			  </p>
             </div>
