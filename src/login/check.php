@@ -44,11 +44,11 @@ if($flag)
    }
    if($inning1!=null||$inning2!=null)
    {
-      $qrytr=mysqli_query($con,"START TRANSACTION");
+      /*$qrytr=mysqli_query($con,"START TRANSACTION");
       echo mysqli_error($con); 
       $qrytr1=mysqli_query($con,"SAVEPOINT rs");
       echo mysqli_error($con); 
-
+     */
      echo "<script>window.open('../entry/test1.php', '_self');</script>";
    }
    else 
