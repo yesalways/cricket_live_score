@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2018 at 04:23 PM
+-- Generation Time: Nov 01, 2018 at 05:00 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -44,16 +44,6 @@ CREATE TABLE `batting` (
   `remarks` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `batting`
---
-
-INSERT INTO `batting` (`matchid`, `playerid`, `n0`, `n1`, `n2`, `n3`, `n4`, `n6`, `balls`, `out_type`, `out_bowlerid`, `out_fielderid`, `remarks`) VALUES
-('G1D1M1', 'TS_01_01', 10, 1, 2, 3, 2, 2, 0, '.', '.', '.', NULL),
-('G1D1M1', 'TS_01_02', 13, 4, 3, 4, 2, 1, 0, '.', '.', '.', NULL),
-('G2D1M1', 'TS_03_01', 20, 2, 3, 4, 1, 0, 0, '.', '.', '.', NULL),
-('G2D1M1', 'TS_03_02', 31, 3, 4, 5, 1, 2, 0, '.', '.', '.', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -63,13 +53,10 @@ INSERT INTO `batting` (`matchid`, `playerid`, `n0`, `n1`, `n2`, `n3`, `n4`, `n6`
 CREATE TABLE `bowling` (
   `matchid` varchar(10) NOT NULL,
   `playerid` varchar(10) NOT NULL,
-  `n0` int(2) NOT NULL,
-  `n1` int(2) NOT NULL,
-  `n2` int(2) NOT NULL,
-  `n3` int(2) NOT NULL,
-  `n4` int(2) NOT NULL,
-  `n6` int(2) NOT NULL,
-  `extras` int(2) NOT NULL,
+  `balls` int(11) NOT NULL DEFAULT '0',
+  `runs` int(11) NOT NULL DEFAULT '0',
+  `wickets` int(11) NOT NULL DEFAULT '0',
+  `extras` int(2) NOT NULL DEFAULT '0',
   `remarks` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -168,7 +155,46 @@ INSERT INTO `clientsinfo` (`machine`, `os`, `browser`, `datetime`) VALUES
 (NULL, NULL, 'Chrome', '2018-09-17 19:58:26'),
 (NULL, NULL, 'Chrome', '2018-09-22 16:03:23'),
 (NULL, NULL, 'Chrome', '2018-09-22 16:07:43'),
-(NULL, NULL, 'Chrome', '2018-09-26 18:46:37');
+(NULL, NULL, 'Chrome', '2018-09-26 18:46:37'),
+(NULL, NULL, 'Chrome', '2018-09-27 18:29:47'),
+(NULL, NULL, 'Chrome', '2018-09-27 18:31:43'),
+(NULL, NULL, 'Chrome', '2018-09-27 18:32:49'),
+(NULL, NULL, 'Chrome', '2018-09-27 18:35:33'),
+(NULL, NULL, 'Chrome', '2018-09-27 18:39:22'),
+(NULL, NULL, 'Chrome', '2018-09-27 18:42:26'),
+(NULL, NULL, 'Chrome', '2018-09-27 18:49:07'),
+(NULL, NULL, 'Chrome', '2018-09-27 19:23:12'),
+(NULL, NULL, 'Chrome', '2018-09-27 19:24:00'),
+(NULL, NULL, 'Chrome', '2018-10-07 11:33:52'),
+(NULL, NULL, 'Chrome', '2018-10-07 11:40:23'),
+(NULL, NULL, 'Chrome', '2018-10-07 11:57:03'),
+(NULL, NULL, 'Chrome', '2018-10-07 11:57:40'),
+(NULL, NULL, 'Chrome', '2018-10-07 12:33:04'),
+(NULL, NULL, 'Chrome', '2018-10-07 13:26:26'),
+(NULL, NULL, 'Chrome', '2018-10-07 13:27:28'),
+(NULL, NULL, 'Chrome', '2018-10-07 13:27:39'),
+(NULL, NULL, 'Chrome', '2018-10-07 13:27:52'),
+(NULL, NULL, 'Chrome', '2018-10-07 13:34:16'),
+(NULL, NULL, 'Chrome', '2018-10-07 13:36:46'),
+(NULL, NULL, 'Chrome', '2018-10-07 13:36:54'),
+(NULL, NULL, 'Chrome', '2018-10-07 13:40:20'),
+(NULL, NULL, 'Chrome', '2018-10-07 13:40:41'),
+(NULL, NULL, 'Chrome', '2018-10-07 13:46:33'),
+(NULL, NULL, 'Chrome', '2018-10-07 13:48:27'),
+(NULL, NULL, 'Chrome', '2018-10-07 14:03:21'),
+(NULL, NULL, 'Chrome', '2018-10-07 14:06:08'),
+(NULL, NULL, 'Chrome', '2018-10-07 14:29:55'),
+(NULL, NULL, 'Chrome', '2018-10-07 14:31:51'),
+(NULL, NULL, 'Chrome', '2018-10-07 14:59:51'),
+(NULL, NULL, 'Chrome', '2018-10-08 18:54:39'),
+(NULL, NULL, 'Chrome', '2018-10-08 18:56:56'),
+(NULL, NULL, 'Chrome', '2018-10-08 20:23:46'),
+(NULL, NULL, 'Chrome', '2018-10-09 10:28:24'),
+(NULL, NULL, 'Chrome', '2018-10-09 16:42:48'),
+(NULL, NULL, 'Chrome', '2018-10-17 11:50:38'),
+(NULL, NULL, 'Chrome', '2018-10-17 13:49:55'),
+(NULL, NULL, 'Chrome', '2018-11-01 19:12:16'),
+(NULL, NULL, 'Chrome', '2018-11-01 19:57:39');
 
 -- --------------------------------------------------------
 
@@ -188,7 +214,8 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`user_id`, `pwd`, `ground_id`, `status`) VALUES
-('user1', '1', 'G1', 1),
+('admin', 'admin', '', 1),
+('user1', '1', 'G1', 0),
 ('user2', '2', 'G2', 0);
 
 -- --------------------------------------------------------

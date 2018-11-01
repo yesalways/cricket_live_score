@@ -43,6 +43,18 @@ else
 	$qry2 = mysqli_query($con, "UPDATE `matches_2018` set `inning1start`=NOW() where `inning1start` is NULL and `matchid` = '$matchid'");
     // teamA is first innings teamB is second innings
 	
+	$qry = mysqli_query($con,"SELECT `playerid` from `players` where `teamid`='$team1id' or `teamid`='$team2id' ");
+	while($res = mysqli_fetch_array($qry))
+	{
+		$qry0 = mysqli_query($con, "INSERT into  `batting` (`matchid`,`playerid`) values ('$matchid','$res[0]')");
+
+	}
+	
+    $qry = mysqli_query($con, "SELECT `playerid` from `players` where `teamid`='$team1id' or `teamid`='$team2id' and `bowl_type` NOT LIKE 'None' ");
+	while ($res = mysqli_fetch_array($qry)) 
+	{
+    	$qry0 = mysqli_query($con, "INSERT into  `bowling` (`matchid`,`playerid`) values ('$matchid','$res[0]')");
+	}
 
 
 echo "<script>window.open('test1.php','_self')</script>";

@@ -136,7 +136,55 @@ else if($extratype=="Noball"&&$outtype!="Notout")
    }
     
 }
-   
+
+if($extratype!="Bye"||$extratype!="Legbye")
+{
+    if($score==0){
+    $qr=mysqli_query($con,"UPDATE `batting` set `n0`= `n0`+1 where  `matchid` = '$matchid' and `playerid`='$batsmanid'");
+    }
+    else if($score==1){
+    $qr=mysqli_query($con,"UPDATE `batting` set `n1`= `n1`+1 where  `matchid` = '$matchid' and `playerid`='$batsmanid'");
+    }
+    else if($score==2){
+        $qr=mysqli_query($con,"UPDATE `batting` set `n2`= `n2`+1 where  `matchid` = '$matchid' and `playerid`='$batsmanid'");
+    }
+    else if($score==3){
+        $qr=mysqli_query($con,"UPDATE `batting` set `n3`= `n3`+1 where  `matchid` = '$matchid' and `playerid`='$batsmanid'");
+    }
+    else if($score==4){
+        $qr=mysqli_query($con,"UPDATE `batting` set `n4`= `n4`+1 where  `matchid` = '$matchid' and `playerid`='$batsmanid'");
+    }
+    else if($score==6){
+        $qr = mysqli_query($con, "UPDATE `batting` set `n6`= `n6`+1 where  `matchid` = '$matchid' and `playerid`='$batsmanid'");
+
+    }
+} 
+if($extratype=="fair")
+{
+    $qr = mysqli_query($con, "UPDATE `batting` set `balls`= `balls`+1 where  `matchid` = '$matchid' and `playerid`='$batsmanid'");
+    $qr = mysqli_query($con, "UPDATE `bowling` set `balls`= `balls`+1 where  `matchid` = '$matchid' and `playerid`='$bowlerid'");
+}
+
+$qr = mysqli_query($con, "UPDATE `bowling` set `runs`= `runs`+$score where  `matchid` = '$matchid' and `playerid`='$bowlerid'");
+if($extratype=="Noball"||$extratype=="wide")
+  $qr = mysqli_query($con, "UPDATE `bowling` set `runs`= `runs`+1 and set `extras`=`extras`+1 where  `matchid` = '$matchid' and `playerid`='$bowlerid'");
+
+if($outtype!="Notout"&&$outtype!="Runout")
+{
+    $qr = mysqli_query($con, "UPDATE `bowling` set `wickets`= `wickets`+1 where  `matchid` = '$matchid' and `playerid`='$bowlerid'");
+    $qr = mysqli_query($con, "UPDATE `batting` set `out_type`= '$outtype',`out_bowlerid`='$bowlerid',`out_fielderid`='$fielderid' where  `matchid` = '$matchid' and `playerid`='$batsmanid'");
+}
+else if($outtype=="Runout")
+{
+    $qr = mysqli_query($con, "UPDATE `batting` set `out_type`= '$outtype' ,`out_fielderid`='$fielderid' where  `matchid` = '$matchid' and `playerid`='$batsmanid'");
+
+}
+
+
+
+
+
+
 //deciding winners should be last in this file
 $qr=mysqli_query($con,"SELECT * from `match_scores` where `match_id`='$matchid'");
 while($row=mysqli_fetch_array($qr))
