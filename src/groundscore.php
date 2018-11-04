@@ -63,6 +63,7 @@
 					{		
 						echo "<small>";
 						$team1name=$team2name="";
+						$firstBat=$secondBat="";
 						while($res = mysqli_fetch_array($qry1))
 						{
 							$matchid =$res['matchid'];
@@ -112,67 +113,150 @@
          	 <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
 		 				 <center>1<sup>st</sup>Innings</center>
            	 <div class="box">
+				<?php
+				$matchid = strtolower($matchid); //echo $matchid;
+				$total=$overs=$balls=0;
+				$overqry = mysqli_query($con, "select total,overs,balls  from `$matchid`  where  `inning`=1 order by `thetime` desc limit 1  ");
+				if($overqry===false){}
+				else
+				{
+					while ($row = mysqli_fetch_array($overqry)) {
+					$total = $row['total'];
+					$overs = $row['overs'];
+					$balls = $row['balls'];
+					}
+				}
+				echo "<tr>$team1id : $total overs : $overs.$balls</tr>";
+				?>
+            	 <p  style='margin:0px 0 0 0'>
+			  				<?php
+								 $matchid = strtolower($matchid); //echo $matchid;
+										echo "<table border=1 style='display:inline-block' title='$Vs2'>";
+											echo "<tr><th rowspan=2>Batsman</th><th>0s</th><th>1s</th><th>2s</th><th>3s</th><th>4s</th><th>6s</th><th rowspan=2>Runs</th><th rowspan=2>Balls</th><th rowspan=2>Strike<br>Rate</th></tr>";
+											echo "<tr>";
+									
+											//for($i=1;$i<=15;$i++)
+											//{  
+												$qry3 = mysqli_query($con, "SELECT `playerid`,`n0`,`n1`,`n2`,`n3`,`n4`,`n6`,`balls` from `batting` where `matchid`='$matchid' and `teamid`='$firstBat' ");
+												if($qry3===false)
+												{  echo "<tr><td>NA</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.0</td></tr>";
+												}
+											  else{  
+												  while ($res = mysqli_fetch_array($qry3)) {
+													  $runs=$res[2]+$res[3]*2+$res[4]*3+$res[5]*4+$res[6]*6;
+													  $srate=0;
+													  if($res[7]!=0)
+													  $srate = (($runs + 0.0) / $res[7])*100;
+
+												  	echo "<tr><td>$res[0]</td><td>$res[1]</td><td>$res[2]</td><td>$res[3]</td><td>$res[4]</td><td>$res[5]</td><td>$res[6]</td><td>$runs</td><td>$res[7]</td><td>$srate</td></tr>";
+												   }
+												  
+											  }
+											//}
+									
+											echo "<tr style='text-align:center;background-color:Red; color:white'><td>......</td><td colspan=8></td></tr></table>";		 
+										//	} //affected rows
+										 echo "<br/><br/>";
+										echo "<table border=1 style='display:inline-block' title='Bowling'>";
+										echo "<tr><th rowspan=2>Bowler</th><th>balls</th><th>runs</th><th>wickets</th><th>extras</th><th>economy</th></tr>";
+										echo "<tr>";
+										$qry3 = mysqli_query($con, "SELECT `playerid`,`balls`,`runs`,`wickets`,`extras` from `bowling` where `matchid`='$matchid' and `teamid`='$secondBat' ");
+										if ($qry3 === false) {echo "<tr><td>NA</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.0</td></tr>";
+										} else {
+											while ($res = mysqli_fetch_array($qry3)) {
+											
+												$economy = 0;
+												if ($res[1] != 0) {
+													$economy = (($res[2]+0.0) / $res[1]) * 6;
+												}
+
+												echo "<tr><td>$res[0]</td><td>$res[1]</td><td>$res[2]</td><td>$res[3]</td><td>$res[4]</td><td>$economy</td></tr>";
+											}
+
+										}
+										
+
+										echo "<tr style='text-align:center;background-color:Red; color:white'><td>......</td><td colspan=8></td></tr></table>";
+
+									?>
+			  
+  			  		 </p>
+             </div>
+					  </div> <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+		 				 <center>2<sup>nd</sup>Innings</center>
+           	 <div class="box">
+				<?php
+					$matchid = strtolower($matchid); //echo $matchid;
+					$total2=$overs2=$balls2=0;
+					$overqry = mysqli_query($con, "select total,overs,balls  from `$matchid`  where  `inning`=2 order by `thetime` desc limit 1  ");
+					if($overqry===false){}
+					else
+					{
+						while ($row = mysqli_fetch_array($overqry)) {
+						$total2 = $row['total'];
+						$overs2 = $row['overs'];
+						$balls2 = $row['balls'];
+						}
+					}
+					echo "<tr>$team2id : $total2 overs : $overs2.$balls2</tr>";
+					?>
             	 <p id="ground1" style='margin:0px 0 0 0'>
 			  				<?php
 								 $matchid = strtolower($matchid); //echo $matchid;
                   // echo $firstBat;
 											echo "<table border=1 style='display:inline-block' title='$Vs2'>";
-											echo "<tr><th rowspan=2>Name of the<br>Batsman</th><th colspan=6>Runs</th><th rowspan=2>Total<br>Runs/Balls</th><th rowspan=2>Strike<br>Rate</th></tr>";
-											echo "<tr><th>0s</th><th>1s</th><th>2s</th><th>3s</th><th>4s</th><th>6s</th>";
+											echo "<tr><th rowspan=2>Batsman</th><th>0s</th><th>1s</th><th>2s</th><th>3s</th><th>4s</th><th>6s</th><th rowspan=2>Runs</th><th rowspan=2>Balls</th><th rowspan=2>Strike<br>Rate</th></tr>";
+											echo "<tr>";
 										 
-									
-												$qry3 = mysqli_query($con, "select `playerid` from `players` where `teamid`='$firstBat' ");
-											while ($res2 = mysqli_fetch_array($qry3)){
-													echo "<tr><td>$res2[0]</td></tr>";//<td>$res2[6]</td><td>$res2[7]</td></tr>";
-											}
-											for($i=1;$i<=15;$i++)
-											{
-												$qry3 = mysqli_query($con, "select `score` from `$matchid` where `inning`='1' and `score`=0 and `extratype` like `fair`");
-												while ($res2 = mysqli_fetch_array($qry3)) {
-													echo "<tr><td>$res2[0]</td></tr>"; //<td>$res2[6]</td><td>$res2[7]</td></tr>";
+											//for($i=1;$i<=15;$i++)
+											//{  
+												$qry3 = mysqli_query($con, "SELECT `playerid`,`n0`,`n1`,`n2`,`n3`,`n4`,`n6`,`balls` from `batting` where `matchid`='$matchid' and `teamid`='$secondBat' ");
+												if($qry3===false)
+												{  echo "<tr><td colspan=10>NA</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.0</td></tr>";
 												}
-											}
+											  else{  
+												  while ($res = mysqli_fetch_array($qry3)) {
+													  $runs = $res[2] + $res[3] * 2 + $res[4] * 3 + $res[5] * 4 + $res[6] * 6;
+														$srate = 0;
+														if ($res[7] != 0) {
+															$srate = (($runs + 0.0) / $res[7]) * 100;
+														}
+
+												  	echo "<tr><td>$res[0]</td><td>$res[1]</td><td>$res[2]</td><td>$res[3]</td><td>$res[4]</td><td>$res[5]</td><td>$res[6]</td><td>$runs</td><td>$res[7]</td><td>$srate</td></tr>";
+												   }
+												  
+											  }
+											//}
 									
 											echo "<tr style='text-align:center;background-color:Red; color:white'><td>......</td><td colspan=8></td></tr></table>";		 
 										//	} //affected rows
+                                       echo "<br/><br/>";
+										echo "<table border=1 style='display:inline-block' title='bowling'>";
+										echo "<tr><th rowspan=2>Bowler</th><th>balls</th><th>runs</th><th>wickets</th><th>extras</th><th>economy</th></tr>";
+										echo "<tr>";
+										$qry3 = mysqli_query($con, "SELECT `playerid`,`balls`,`runs`,`wickets`,`extras` from `bowling` where `matchid`='$matchid' and `teamid`='$firstBat' ");
+										$overs=0;
+										if ($qry3 === false) {echo "<tr><td>NA</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.0</td></tr>";
+										} else {
+											while ($res = mysqli_fetch_array($qry3)) {
+
+												$economy = 0;
+												if ($res[1] != 0) {
+													$economy = (($res[2] + 0.0) / $res[1]) * 6;
+													//$overs=($res[1]+0.0)/6+$res[1]%6;
+												}
+
+												echo "<tr><td>$res[0]</td><td>$res[1]</td><td>$res[2]</td><td>$res[3]</td><td>$res[4]</td><td>$economy</td></tr>";
+											}
+
+										}
+
+										echo "<tr style='text-align:center;background-color:Red; color:white'><td>......</td><td colspan=8></td></tr></table>";
+
 									?>
 			  
   			  		 </p>
              </div>
-					  </div>
-						<div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-           	 <center>2<sup>nd</sup>Innings</center>
-							<div class="box">
-              	 <p id="ground1" style='margin:0px 0 0 0'>
-			  				<?php
-								 $matchid = strtolower($matchid); //echo $matchid;
-                  // echo $firstBat;
-											echo "<table border=1 style='display:inline-block' title='$Vs2'>";
-											echo "<tr><th rowspan=2>Name of the<br>Batsman</th><th colspan=6>Runs</th><th rowspan=2>Total<br>Runs/Balls</th><th rowspan=2>Strike<br>Rate</th></tr>";
-											echo "<tr><th>0s</th><th>1s</th><th>2s</th><th>3s</th><th>4s</th><th>6s</th>";
-										 
-									
-												$qry3 = mysqli_query($con, "select `playerid` from `players` where `teamid`='$secondBat' ");
-											while ($res2 = mysqli_fetch_array($qry3)){
-													echo "<tr><td>$res2[0]</td></tr>";//<td>$res2[6]</td><td>$res2[7]</td></tr>";
-											}
-										/*	 $qry3=mysqli_query($con1, "select * from `players` where `playerid` = '$playerid' ");
-											while($res3 = mysqli_fetch_array($qry3))
-												$playername = $res3['name'];
-											echo "<tr><td>$playername</td><td>",$res2['n0'],"</td><td>",$res2['n1'],"</td><td>",$res2['n2'],"</td><td>",$res2['n3'],"</td><td>",$res2['n4'],"</td><td>",$res2['n6'],"</td>";
-											$tot = $res2['n1']*1 + $res2['n2']*2 + $res2['n3']*3 + $res2['n4']*4 + $res2['n6']*6;
-											$ballcount = $res2['n0'] + $res2['n1'] + $res2['n2'] + $res2['n3'] + $res2['n4'] + $res2['n6'];
-											echo "<td>$tot / $ballcount</td><td>", round(($tot / $ballcount)*100,2) ,"</td><tr>";	 
-											}
-											*/
-											echo "<tr style='text-align:center;background-color:Red; color:white'><td>......</td><td colspan=8></td></tr></table>";		 
-										//	} //affected rows
-									?>
-			  
-  			  		 </p>
-           		</div>
-						</div>			
-           </div>
 			 </div>
 		 </section>
     </div>

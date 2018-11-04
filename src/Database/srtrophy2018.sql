@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2018 at 05:00 PM
+-- Generation Time: Nov 04, 2018 at 06:11 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `batting` (
   `matchid` varchar(10) NOT NULL,
+  `teamid` varchar(10) NOT NULL,
   `playerid` varchar(10) NOT NULL,
   `n0` int(2) NOT NULL DEFAULT '0',
   `n1` int(2) NOT NULL DEFAULT '0',
@@ -37,6 +38,7 @@ CREATE TABLE `batting` (
   `n3` int(2) NOT NULL DEFAULT '0',
   `n4` int(2) NOT NULL DEFAULT '0',
   `n6` int(2) NOT NULL DEFAULT '0',
+  `runs` int(11) NOT NULL DEFAULT '0',
   `balls` int(11) NOT NULL DEFAULT '0',
   `out_type` varchar(20) DEFAULT NULL,
   `out_bowlerid` varchar(10) DEFAULT NULL,
@@ -52,6 +54,7 @@ CREATE TABLE `batting` (
 
 CREATE TABLE `bowling` (
   `matchid` varchar(10) NOT NULL,
+  `teamid` varchar(10) NOT NULL,
   `playerid` varchar(10) NOT NULL,
   `balls` int(11) NOT NULL DEFAULT '0',
   `runs` int(11) NOT NULL DEFAULT '0',
@@ -194,7 +197,11 @@ INSERT INTO `clientsinfo` (`machine`, `os`, `browser`, `datetime`) VALUES
 (NULL, NULL, 'Chrome', '2018-10-17 11:50:38'),
 (NULL, NULL, 'Chrome', '2018-10-17 13:49:55'),
 (NULL, NULL, 'Chrome', '2018-11-01 19:12:16'),
-(NULL, NULL, 'Chrome', '2018-11-01 19:57:39');
+(NULL, NULL, 'Chrome', '2018-11-01 19:57:39'),
+(NULL, NULL, 'Chrome', '2018-11-03 20:47:36'),
+(NULL, NULL, 'Chrome', '2018-11-03 22:37:28'),
+(NULL, NULL, 'Chrome', '2018-11-03 22:55:14'),
+(NULL, NULL, 'Chrome', '2018-11-04 21:20:07');
 
 -- --------------------------------------------------------
 

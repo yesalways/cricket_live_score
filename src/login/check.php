@@ -56,7 +56,7 @@ if($flag)
  }
 else	{
        echo "<script>window.alert('login credentials incorrect')";
-       echo "<script>window.open('../login/', '_self')</script>";
+       echo "<script>window.open('../login/', '_self');</script>";
 }
 	// header('Location:/OBE_WT');
 }
