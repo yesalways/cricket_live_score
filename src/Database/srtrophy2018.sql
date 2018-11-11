@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2018 at 06:11 PM
+-- Generation Time: Nov 11, 2018 at 05:10 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -201,7 +201,14 @@ INSERT INTO `clientsinfo` (`machine`, `os`, `browser`, `datetime`) VALUES
 (NULL, NULL, 'Chrome', '2018-11-03 20:47:36'),
 (NULL, NULL, 'Chrome', '2018-11-03 22:37:28'),
 (NULL, NULL, 'Chrome', '2018-11-03 22:55:14'),
-(NULL, NULL, 'Chrome', '2018-11-04 21:20:07');
+(NULL, NULL, 'Chrome', '2018-11-04 21:20:07'),
+(NULL, NULL, 'Chrome', '2018-11-05 12:32:48'),
+(NULL, NULL, 'Chrome', '2018-11-05 12:35:06'),
+(NULL, NULL, 'Chrome', '2018-11-05 12:39:05'),
+(NULL, NULL, 'Chrome', '2018-11-05 12:50:00'),
+(NULL, NULL, 'Chrome', '2018-11-11 11:26:17'),
+(NULL, NULL, 'Chrome', '2018-11-11 14:01:19'),
+(NULL, NULL, 'Chrome', '2018-11-11 15:58:00');
 
 -- --------------------------------------------------------
 
@@ -221,7 +228,7 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`user_id`, `pwd`, `ground_id`, `status`) VALUES
-('admin', 'admin', '', 1),
+('admin', 'admin', '', 0),
 ('user1', '1', 'G1', 0),
 ('user2', '2', 'G2', 0);
 
@@ -253,7 +260,7 @@ CREATE TABLE `matches_2018` (
 --
 
 INSERT INTO `matches_2018` (`matchid`, `team1id`, `team2id`, `scheduledon`, `status`, `toss_teamid`, `toss_type`, `overs`, `inning1start`, `inning1end`, `inning2start`, `inning2end`, `winner_teamid`, `remarks`) VALUES
-('03_G1_M1', 'KUCET', 'CMRIT', NULL, 'active', NULL, NULL, 0, NULL, NULL, NULL, NULL, '.', '.'),
+('03_G1_M1', 'KUCET', 'CMRIT', NULL, 'active', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '.'),
 ('03_G1_M2', 'AUROH', 'KITSW', '0000-00-00', 'None', '.', '.', 0, NULL, NULL, NULL, NULL, '.', '.'),
 ('03_G2_M1', 'SBITK', 'GITUH', '0000-00-00', 'active', NULL, NULL, 0, NULL, NULL, NULL, NULL, '.', '.'),
 ('03_G2_M2', 'CMRCE', 'NITWG', '0000-00-00', 'None', '.', '.', 0, NULL, NULL, NULL, NULL, '.', '.'),
@@ -289,11 +296,11 @@ CREATE TABLE `match_scores` (
   `teamA` varchar(8) NOT NULL,
   `scoreA` int(11) NOT NULL,
   `wicketsA` int(11) NOT NULL,
-  `oversA` float NOT NULL DEFAULT '0',
+  `ballsA` int(11) NOT NULL DEFAULT '0',
   `teamB` varchar(8) NOT NULL,
   `scoreB` int(11) NOT NULL,
   `wicketsB` int(11) NOT NULL,
-  `oversB` float NOT NULL DEFAULT '0',
+  `ballsB` int(11) NOT NULL DEFAULT '0',
   `lastUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
