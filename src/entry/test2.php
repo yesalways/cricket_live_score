@@ -46,13 +46,41 @@ while($row=mysqli_fetch_array($overqry))
                         }
                   else if($inning==2)
                   {
-                      $qr2= mysqli_query($con,"UPDATE `match_scores` set `scoreA`='$total' where `match_id`='$matchid'");
+                      
                       $qry0 = mysqli_query($con, "UPDATE `matches_2018` set `inning2end`=NOW() where `inning2end` is NULL and `matchid` = '$matchid'");
                       //echo "<script>window.open('logout.php', '_self')</script>";
                   }
                 }
              
-          
+ if($inning==1)
+ {
+    $qr2 = mysqli_query($con, "UPDATE `match_scores` set `scoreA`=`scoreA`+'$score' where `match_id`='$matchid'");
+    if($outtype!="Notout")
+    {
+        $qr2 = mysqli_query($con, "UPDATE `match_scores` set `wicketsA`=`wicketsA`+1 where `match_id`='$matchid'");
+    }
+
+    if($extratype=="Wide"||$extratype=="Noball")
+    {
+        $qr2 = mysqli_query($con, "UPDATE `match_scores` set `scoreA`=`scoreA`+1 where `match_id`='$matchid'");
+
+    }
+    else $qr2 = mysqli_query($con, "UPDATE `match_scores` set `ballsA`=`ballsA`+1 where `match_id`='$matchid'");
+ }      
+ else if($inning==2)
+ {
+     $qr2 = mysqli_query($con, "UPDATE `match_scores` set `scoreB`=`scoreB`+'$score' where `match_id`='$matchid'");
+    if($outtype!="Notout")
+    {
+        $qr2 = mysqli_query($con, "UPDATE `match_scores` set `wicketsB`=`wicketsB`+1 where `match_id`='$matchid'");
+    }
+
+    if($extratype=="Wide"||$extratype=="Noball")
+    {
+        $qr2 = mysqli_query($con, "UPDATE `match_scores` set `scoreB`=`scoreB`+1 where `match_id`='$matchid'");
+    }
+     else $qr2 = mysqli_query($con, "UPDATE `match_scores` set `ballsB`=`ballsB`+1 where `match_id`='$matchid'");
+ }  
 
 
  if($extratype=="fair"&&$outtype=="Notout")
@@ -147,19 +175,19 @@ if($extratype=="fair"&&$outtype=="Notout")
 }
 
 if ($extratype == "Bye" || $extratype == "Legbye") {
-    $qr = mysqli_query($con, "UPDATE `batting` set `n0`=`n0`+1,`balls`=`balls`+1 where  `matchid` = '$matchid' and `playerid`='$batsmanid'");
+    $qr = mysqli_query($con, "UPDATE `batting` set `n$score`=`n$score`+1,`balls`=`balls`+1 where  `matchid` = '$matchid' and `playerid`='$batsmanid'");
  $qr = mysqli_query($con, "UPDATE `bowling` set `balls`=`balls`+1,`extras`=`extras`+$score where  `matchid` = '$matchid' and `playerid`='$bowlerid'");
 }
 
 
-if($extratype=="Noball"||$extratype=="wide")
-{  $qr = mysqli_query($con, "UPDATE `bowling` set `runs`= `runs`+$score , `extras`=`extras`+1 where  `matchid` = '$matchid' and `playerid`='$bowlerid'");
-  $qr = mysqli_query($con, "UPDATE `batting` set `runs`= `runs`+$score,`n$score`=`n$score`+1 where  `matchid` = '$matchid' and `playerid`='$batsmanid'");
+if($extratype=="Noball"||$extratype=="Wide")
+{  $qr = mysqli_query($con, "UPDATE `bowling` set `runs`= `runs`+$score+1 ,`extras`=`extras`+1 where  `matchid` = '$matchid' and `playerid`='$bowlerid'");
+  $qr = mysqli_query($con, "UPDATE `batting` set `runs`= `runs`+$score+1 ,`n$score`=`n$score`+1 where  `matchid` = '$matchid' and `playerid`='$batsmanid'");
 }
 if($outtype!="Notout"&&$outtype!="Runout")
 {
     $qr = mysqli_query($con, "UPDATE `bowling` set `wickets`= `wickets`+1,`balls`=`balls`+1 where  `matchid` = '$matchid' and `playerid`='$bowlerid'");
-    $qr = mysqli_query($con, "UPDATE `batting` set `balls`=`balls`+1,`out_type`= '$outtype',`out_bowlerid`='$bowlerid',`out_fielderid`='$fielderid' where  `matchid` = '$matchid' and `playerid`='$batsmanid'");
+    $qr = mysqli_query($con, "UPDATE `batting` set `balls`=`balls`+1,`n0`=`n0`+1,`out_type`= '$outtype',`out_bowlerid`='$bowlerid',`out_fielderid`='$fielderid' where  `matchid` = '$matchid' and `playerid`='$batsmanid'");
 }
 else if($outtype=="Runout")
 {
@@ -182,8 +210,10 @@ while($row=mysqli_fetch_array($qr))
     $scoreB=$row['scoreB'];
     $wicketsA=$row['wicketsA'];
     $wicketsB=$row['wicketsB'];
-    $oversA=$row['oversA'];
-    $oversB=$row['oversB'];
+    $ballsA=$row['ballsA'];
+    $oversA=(int)($ballsA/6)+0.1*(int)($ballsA%6);
+    $ballsB=$row['ballsB'];
+    $oversB=(int)($ballsB/6)+0.1*(int)($ballsB%6);
 }
 if($wicketsA==10)
 {

@@ -52,6 +52,36 @@
                     $q = mysqli_query($con, "UPDATE `bowling` set `runs`=`runs`-$score,`balls`=`balls`-1,`extras`=`extras`-$extra where `matchid`='$matchid' and `playerid`='$bowlerid' ");
 
                 }
+            if($inning==1)
+            {
+                $qr2 = mysqli_query($con, "UPDATE `match_scores` set `scoreA`=`scoreA`-'$score' where `match_id`='$matchid'");
+                if ($outtype != "Notout") {
+                    $qr2 = mysqli_query($con, "UPDATE `match_scores` set `wicketsA`=`wicketsA`-1 where `match_id`='$matchid'");
+                }
+
+                if ($extratype == "Wide" || $extratype == "Noball") {
+                    $qr2 = mysqli_query($con, "UPDATE `match_scores` set `scoreA`=`scoreA`-1 where `match_id`='$matchid'");
+
+                } else {
+                    $qr2 = mysqli_query($con, "UPDATE `match_scores` set `ballsA`=`ballsA`-1 where `match_id`='$matchid'");
+                }
+
+            }
+             if($inning==2)
+            {
+                $qr2 = mysqli_query($con, "UPDATE `match_scores` set `scoreB`=`scoreB`-'$score' where `match_id`='$matchid'");
+                if ($outtype != "Notout") {
+                    $qr2 = mysqli_query($con, "UPDATE `match_scores` set `wicketsB`=`wicketsB`-1 where `match_id`='$matchid'");
+                }
+
+                if ($extratype == "Wide" || $extratype == "Noball") {
+                    $qr2 = mysqli_query($con, "UPDATE `match_scores` set `scoreB`=`scoreB`-1 where `match_id`='$matchid'");
+
+                } else {
+                    $qr2 = mysqli_query($con, "UPDATE `match_scores` set `ballsB`=`ballsB`-1 where `match_id`='$matchid'");
+                }
+
+            }
 
         $qu=mysqli_query($con,"DELETE from `$matchid`  where  `inning`='$inning' order by `thetime` desc limit 1 ");
                       //echo $qu;

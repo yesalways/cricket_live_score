@@ -16,6 +16,7 @@
 				{
 					$qry1=mysqli_query($con,"select `teamA`,`teamB` from `match_scores` where `match_id`='$matchid' ");
 					$fbat=null; $fbowl=null;
+					$team1_details[0]='';
 					while($res=mysqli_fetch_array($qry1))
 					{
 						$fbat=$res['teamA'];
@@ -34,16 +35,16 @@
 					if($i1e==NULL&&$i2s==NULL)
 					{
 						$_SESSION['inning']=1;
-						$team1_details = getTeamNames($fbat, $con);
-						$team2_details = getBowlersNames($fbowl, $con);
-						$bowlerCount = $team2_details[0][0];
+						$team1_details = getTeamNames($fbat, $matchid);
+						$team2_details = getBowlersNames($fbowl, $matchid);
+						$bowlerCount = $team2_details[0];
 					}
 					else if($i1e!=NULL&&$i2e==NULL)
 					{
 						$_SESSION['inning']=2;
-						$team1_details = getTeamNames($fbowl, $con);
-						$team2_details = getBowlersNames($fbat, $con);
-						$bowlerCount = $team2_details[0][0];
+						$team1_details = getTeamNames($fbowl, $matchid);
+						$team2_details = getBowlersNames($fbat, $matchid);
+						$bowlerCount = $team2_details[0];
 					}
 					else
 					{
@@ -113,34 +114,37 @@
 				<tr> <th id='center' colspan='5'> Inning Type : 
 						<?php
 						   $inning=$_SESSION['inning'];
-						    
-						    $overqry=mysqli_query($con,"SELECT `total`,`overs`,`balls`  from `$matchid`  where  `inning`=$inning order by `thetime` desc limit 1  ");
-							
-							
+						    echo $inning;
+						    $overqry=mysqli_query($con,"SELECT * from `match_scores`  where  `match_id`='$matchid' ");
 							while($row=mysqli_fetch_array($overqry))
 							{
-								$total=$row['total'];
-								$overs=$row['overs'];
-								$balls=$row['balls'];
+								if($inning==1)
+								{
+								  $total=$row['scoreA'];
+								  $wickets=$row['wicketsA'];
+								  $balls=$row['ballsA'];
+								}
+								if($inning==2)
+								{
+								    $total = $row['scoreB'];
+									$wickets = $row['wicketsB'];
+									$balls = $row['ballsB'];			
+								}
 							}
-							$wickqry=mysqli_query($con,"SELECT count(*) from $matchid where `inning`=$inning and `outtype` IS NOT NULL");
-							while($row=mysqli_fetch_array($wickqry))
-							{
-								$wickets=$row[0];
-							}
-							echo $total,"/",$wickets,"  over : ",$overs,".",$balls," (",$_SESSION['overs'],")";
+							
+							echo " score : ",$total,"/",$wickets,"  over : ",(int)($balls/6)+0.1*(int)($balls%6)," (",$_SESSION['overs'],")";
 						?></th>
 				 </tr>
 				<tr> <th id='center'> Current Batsman -</th> <td> <select name='batsman' id='select1'> 
-					<?php for($x=0; $x<11; $x++) { 
+					<?php for($x=0; $x<15; $x++) { 
 					?>
-					<option value='<?php echo $team1_details[$x][1]; ?>'> <?php echo $team1_details[$x][1]; ?> </option>
+					<option value='<?php echo $team1_details[$x]; ?>'> <?php echo $team1_details[$x]; ?> </option>
 					<?php } ?>
 					</select> </td>
 					<th id='center'> Current Bowler - </th> <td>  <select name='bowler' id='select1'> 
 					<?php for($x=1; $x<=$bowlerCount; $x++) { 
 					?>
-					<option value='<?php echo $team2_details[$x][1]; ?>'> <?php echo $team2_details[$x][1]; ?> </option>
+					<option value='<?php echo $team2_details[$x]; ?>'> <?php echo $team2_details[$x]; ?> </option>
 					<?php } ?>
 					</select>
 					 </td> 
@@ -179,9 +183,9 @@
 							<input type='radio' name='wickets' id="runout" value='Runout' >Runout<br>
 							<input type='radio' name='wickets' id="caught" value='Caught' >Catch
 								<select name='fielder_catch' id='selectcatch'> 
-										<?php for($x=1; $x<=6; $x++) { 
+										<?php for($x=1; $x<=15; $x++) { 
 										?>
-										<option value='<?php echo $team2_details[$x][1]; ?>'> <?php echo $team2_details[$x][1]; ?> </option>
+										<option value='<?php echo $team1_details[$x]; ?>'> <?php echo $team1_details[$x]; ?> </option>
 										<?php } ?>
 									</select> <br> 
 							

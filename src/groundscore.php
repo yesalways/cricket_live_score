@@ -115,18 +115,28 @@
            	 <div class="box">
 				<?php
 				$matchid = strtolower($matchid); //echo $matchid;
-				$total=$overs=$balls=0;
-				$overqry = mysqli_query($con, "select total,overs,balls  from `$matchid`  where  `inning`=1 order by `thetime` desc limit 1  ");
+				$scoreA=$wicketsA=$ballsA=$scoreB=$wicketsB=$ballsB=0;
+				$teamA=$teamB='';
+				$overqry = mysqli_query($con, "select *  from `match_scores`  where  `match_id`='$matchid'  ");
 				if($overqry===false){}
 				else
 				{
 					while ($row = mysqli_fetch_array($overqry)) {
-					$total = $row['total'];
-					$overs = $row['overs'];
-					$balls = $row['balls'];
+					$teamA = $row['teamA'];
+					$scoreA = $row['scoreA'];
+					$wicketsA = $row['wicketsA'];
+					$ballsA=$row['ballsA'];
+					$teamB = $row['teamB'];
+					$scoreB = $row['scoreB'];
+					$wicketsB = $row['wicketsB'];
+					$ballsB = $row['ballsB'];
+
 					}
 				}
-				echo "<tr>$team1id : $total overs : $overs.$balls</tr>";
+				
+				echo "<tr>",$teamA ," : ", $scoreA," / ",$wicketsA," overs : ", (int)($ballsA/6)+0.1*(int)($ballsA%6) ,"</tr>";
+				
+				
 				?>
             	 <p  style='margin:0px 0 0 0'>
 			  				<?php
@@ -146,7 +156,7 @@
 													  $runs=$res[2]+$res[3]*2+$res[4]*3+$res[5]*4+$res[6]*6;
 													  $srate=0;
 													  if($res[7]!=0)
-													  $srate = (($runs + 0.0) / $res[7])*100;
+													  $srate = number_format((float)(($runs + 0.0) / $res[7])*100,'2','.','');
 
 												  	echo "<tr><td>$res[0]</td><td>$res[1]</td><td>$res[2]</td><td>$res[3]</td><td>$res[4]</td><td>$res[5]</td><td>$res[6]</td><td>$runs</td><td>$res[7]</td><td>$srate</td></tr>";
 												   }
@@ -167,7 +177,7 @@
 											
 												$economy = 0;
 												if ($res[1] != 0) {
-													$economy = (($res[2]+0.0) / $res[1]) * 6;
+													$economy = number_format((float)(($res[2]+0.0) / $res[1]) * 6,'2','.','');
 												}
 
 												echo "<tr><td>$res[0]</td><td>$res[1]</td><td>$res[2]</td><td>$res[3]</td><td>$res[4]</td><td>$economy</td></tr>";
@@ -186,19 +196,9 @@
 		 				 <center>2<sup>nd</sup>Innings</center>
            	 <div class="box">
 				<?php
-					$matchid = strtolower($matchid); //echo $matchid;
-					$total2=$overs2=$balls2=0;
-					$overqry = mysqli_query($con, "select total,overs,balls  from `$matchid`  where  `inning`=2 order by `thetime` desc limit 1  ");
-					if($overqry===false){}
-					else
-					{
-						while ($row = mysqli_fetch_array($overqry)) {
-						$total2 = $row['total'];
-						$overs2 = $row['overs'];
-						$balls2 = $row['balls'];
-						}
-					}
-					echo "<tr>$team2id : $total2 overs : $overs2.$balls2</tr>";
+				
+						echo "<tr>",$teamB ," : ", $scoreB," / ",$wicketsB," overs : ", (int)($ballsB/6)+0.1*(int)($ballsB%6) ,"</tr>";
+				
 					?>
             	 <p id="ground1" style='margin:0px 0 0 0'>
 			  				<?php
