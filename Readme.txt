@@ -1,3 +1,5 @@
+I would like to thank our guide Mr. K. Sangameshwar for his constant support
+
 Thanks for downloading this theme!
 
 Theme Name: Regna
